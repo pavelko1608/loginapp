@@ -26,7 +26,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/pavelko1608/loginapp.git',
       path : '/home/deploy/loginapp',
-      'post-deploy' : 'nvm install && npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'nvm install && npm install && /home/deploy/.nvm/versions/node/v6.10.2/bin/pm2 reload ecosystem.config.js --env production'
     }
   }
 };
