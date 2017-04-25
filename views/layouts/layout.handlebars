@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Loginapp</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+  	<div class="container">
+  		<div class="header">
+  			<nav>
+	  			<ul class="nav">
+	  				{{#if user}}
+	  				<li><a href="/">Dashboard</a></li>
+	  				<li><a href="/users/logout">Logout</a></li>
+	  				{{else}}
+	  				<li><a href="/users/login">Login</a></li>
+	  				<li><a href="/users/register">Register</a></li>
+	  				{{/if}}
+	  			</ul>
+  			</nav>
+  		</div>
+
+  		<div class="row">
+  			<div>
+  				{{#if success_msg}}
+					<div>{{success_msg}}</div>
+  				{{/if}}
+
+  				{{#if error_msg}}
+					<div>{{error_msg}}</div>
+  				{{/if}}
+
+  				{{#if error}}
+					<div>{{error}}</div>
+  				{{/if}}
+
+  				{{{body}}}
+  			</div>
+  			
+  		</div>
+  	</div>
+  </body>
+</html>
