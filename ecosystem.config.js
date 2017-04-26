@@ -22,7 +22,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'deploy',
-      host : '207.154.197.243',
+      host : '46.101.211.213',
       ref  : 'origin/master',
       repo : 'https://github.com/pavelko1608/loginapp.git',
       path : '/home/deploy/loginapp',
