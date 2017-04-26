@@ -25,7 +25,7 @@ module.exports = {
       host : '46.101.211.213',
       ref  : 'origin/master',
       repo : 'https://github.com/pavelko1608/loginapp.git',
-      path : '/home/root/loginapp',
+      path : '~/loginapp',
       'post-deploy' : 'npm install && /home/deploy/.nvm/versions/node/v6.10.2/bin/pm2 reload ecosystem.config.js --env production'
     }
   }
