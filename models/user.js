@@ -15,6 +15,12 @@ var UserSchema = mongoose.Schema({
 	},
 	name: {
 		type: String
+	},
+	oauth_provider: {
+		type: String
+	},
+	oauth_id:  {
+		type: Number
 	}
 });
 
