@@ -1,8 +1,23 @@
+@import 'foundation';
+
+
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding-top: 30px;
 }
 
-a {
-  color: #00B7FF;
+.button {
+	margin-right: 10px;
+}
+
+.fa {
+	margin-left: 20px;
+}
+
+.welcome {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
 }
