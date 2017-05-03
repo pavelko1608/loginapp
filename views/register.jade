@@ -4,6 +4,8 @@ block content
 	if errors
 		for error in errors
 			div #{error.msg}
+	if warning 
+		div #{warning}		
 	form(method="post" action="/users/register")
 		div(class="form-group")
 			label Name

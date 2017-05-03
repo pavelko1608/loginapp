@@ -130,16 +130,21 @@ router.post("/register", function(req, res) {
 	var errors = req.validationErrors();
 
 	if(errors) {
-		res.render("/register", {
+		res.render("register", {
 			errors: errors
 		});
-	} else {
-		var newUser = new User({
-			name: name,
-			email: email,
-			username: username,
-			password: password
-		});
+	} 
+	else if(User.findOne({username: username, email: email})) {
+		console.log("user exists");
+		res.render("register", {warning: "User with these credentials already exists."})
+		} else {
+	var newUser = new User({
+				name: name,
+				email: email,
+				username: username,
+				password: password
+			});
+
 
 		User.createUser(newUser, function(err, user) {
 			if(err) throw err;
@@ -149,7 +154,7 @@ router.post("/register", function(req, res) {
 		req.flash("success_msg", "You are registered and can now login");
 
 		res.redirect("/users/login");
-	}
+}
 });
 
 //LOGIN
