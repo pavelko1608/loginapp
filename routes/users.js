@@ -7,6 +7,8 @@ var GitHubStrategy = require("passport-github2").Strategy;
 var mongoose = require("mongoose");
 
 var User = require("../models/user");
+var db = require("../db");
+
 
 //LOCAL STRATEGY
 passport.use(new LocalStrategy(
@@ -113,6 +115,8 @@ router.get("/register", function(req, res) {
 
 //REGISTER USER
 router.post("/register", function(req, res) {
+	collection = db.collection('users');
+
 	var name = req.body.name;
 	var email = req.body.email;
 	var username = req.body.username;
@@ -126,7 +130,7 @@ router.post("/register", function(req, res) {
 	req.checkBody("username", "Username is required").notEmpty();
 	req.checkBody("password", "Password is required").notEmpty();
 	req.checkBody("password2", "Passwords do not match").equals(req.body.password);
-
+	
 	var errors = req.validationErrors();
 
 	if(errors) {
@@ -134,9 +138,11 @@ router.post("/register", function(req, res) {
 			errors: errors
 		});
 	} 
-	else if(User.findOne({username: username, email: email})) {
-		console.log("user exists");
-		res.render("register", {warning: "User with these credentials already exists."})
+	
+	collection.find({username: username, email: email}).toArray((err, user) => {
+		if(user.length) {
+			console.log(user);
+			res.render("register", {warning: "User with these credentials already exists"})
 		} else {
 			var newUser = new User({
 						name: name,
@@ -145,16 +151,22 @@ router.post("/register", function(req, res) {
 						password: password
 					});
 
+			User.createUser(newUser, function(err, user) {
+				if(err) throw err;
+				console.log(user);
+			});
 
-		User.createUser(newUser, function(err, user) {
-			if(err) throw err;
-			console.log(user);
-		});
+			req.flash("success_msg", "You are registered and can now login");
 
-		req.flash("success_msg", "You are registered and can now login");
+			res.redirect("/users/login");
+		}
+		
 
-		res.redirect("/users/login");
-}
+	});
+
+	
+
+
 });
 
 //LOGIN
