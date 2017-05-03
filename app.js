@@ -23,8 +23,7 @@ var app = express();
 
 //VIEW ENGINE
 app.set("views", path.join(__dirname, "views"));
-app.engine("handlebars", exphbs({defaultLayout:"layout"}));
-app.set("view engine", "handlebars");
+app.set("view engine", "jade");
 
 //BODYPARSER MIDDLEWARE
 app.use(bodyParser.json());

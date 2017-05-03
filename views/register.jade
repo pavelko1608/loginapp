@@ -1,0 +1,23 @@
+extends ./layouts/layout
+block content  
+	h2 Register
+	if errors
+		for error in errors
+			div #{error.msg}
+	form(method="post" action="/users/register")
+		div(class="form-group")
+			label Name
+			input(type="text" name="name" placeholder="Name")
+		div(class="form-group")
+			label Username
+			input(type="text" name="username" placeholder="Username")
+		div(class="form-group")
+			label Email
+			input(type="email" name="email" placeholder="Email")
+		div(class="form-group")
+			label password
+			input(type="password" name="password" placeholder="password")
+		div(class="form-group")
+			label Confirm password
+			input(type="password" name="password2" placeholder="Password")
+		button(type="submit" class="button") Submit
