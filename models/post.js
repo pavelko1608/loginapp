@@ -1,24 +1,17 @@
-// var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
-// //USER SCHEMA
-// var UserSchema = mongoose.Schema({
-// 	username: {
-// 		type: String,
-// 		index: true
-// 	},
-// 	password: {
-// 		type: String
-// 	},
-// 	email: {
-// 		type: String
-// 	},
-// 	name: {
-// 		type: String
-// 	},
-// 	oauth_provider: {
-// 		type: String
-// 	},
-// 	oauth_id:  {
-// 		type: Number
-// 	}
-// });
+//USER SCHEMA
+var PostSchema = mongoose.Schema({
+	title: {
+		type: String	
+	},
+	post: {
+		type: String
+	},
+	username: {
+		type: String
+	}
+	
+});
+
+var Post = module.exports = mongoose.model("Post", PostSchema);

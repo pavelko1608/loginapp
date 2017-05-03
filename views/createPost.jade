@@ -1,0 +1,14 @@
+extends ./layouts/layout
+block content
+	if errors
+		for error in errors
+			div #{error.msg}
+	h4 Create Post
+	form(method="post" action="/posts/create")
+		div(class="form-group")
+			label Title
+			input(type="text" name="title" placeholder="Title for your Post")
+		div(class="form-group")
+			label Post
+			input(type="text" name="post" placeholder="Content of your Post")
+		button(type="submit" class="button") Submit		

@@ -8,8 +8,18 @@ body {
 	padding-top: 30px;
 }
 
+.menu-centered {
+	display: flex;
+	justify-content: center;
+}
+.menu {
+	display: flex;
+	justify-content: center;
+}
+
 .button {
 	margin-right: 10px;
+	width: 175px;
 }
 
 .fa {
@@ -20,4 +30,23 @@ body {
 	display: flex;
 	justify-content: center;
 	margin-top: 20px;
+}
+
+.media-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.media-object {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 60%;
+
+}
+.media-object-section {
+	display: flex;
+	justify-content: center;
 }

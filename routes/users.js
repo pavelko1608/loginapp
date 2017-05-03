@@ -138,12 +138,12 @@ router.post("/register", function(req, res) {
 		console.log("user exists");
 		res.render("register", {warning: "User with these credentials already exists."})
 		} else {
-	var newUser = new User({
-				name: name,
-				email: email,
-				username: username,
-				password: password
-			});
+			var newUser = new User({
+						name: name,
+						email: email,
+						username: username,
+						password: password
+					});
 
 
 		User.createUser(newUser, function(err, user) {
