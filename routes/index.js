@@ -20,7 +20,7 @@ router.post("/posts/create", ensureAuthenticated, function(req, res) {
 	 var newPost = new Post({
 	 	title: req.body.title,
 	 	post: req.body.post,
-	 	username: req.user.username || req.user.name
+	 	username: req.user.username
 	});
 
 	req.checkBody("title", "Title is required").notEmpty();
@@ -34,6 +34,7 @@ router.post("/posts/create", ensureAuthenticated, function(req, res) {
 		});
 	} else {
 		newPost.save();
+		console.log(newPost);
 		res.redirect("/");
 	}
 

@@ -1,7 +1,8 @@
 extends ./layouts/layout
 block content  
-	div(class="welcome")
-		h3 Welcome, #{user.name}	
+	div(class="welcome") 
+			h3 Welcome, #{user.name}
+	hr
 	div(class="media-container")
 		each post in posts
 			div(class="media-object")
@@ -10,4 +11,4 @@ block content
 				div(class="media-object-section main-section") 		
 					p #{post.post}
 				div(class="media-object-section main-section")
-					cite #{post.name}
+					cite #{post.username}
