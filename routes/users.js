@@ -44,7 +44,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new FacebookStrategy({
     clientID: "404285189927690",
     clientSecret: "8924399b0f5e60f180032049a6052997",
-    callbackURL: 'http://localhost:3000/users/auth/facebook/callback'
+    callbackURL: 'http://46.101.234.118/users/auth/facebook/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     
@@ -77,7 +77,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GitHubStrategy({
     clientID: "b3da5009c2a93cbbc34f",
     clientSecret: "8bbb3d5f938a59a8033ed095d4cdd0ffb7ab5477",
-    callbackURL: "http://localhost:3000/users/auth/github/callback"
+    callbackURL: "http://46.101.234.118/users/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
   	console.log(profile);
