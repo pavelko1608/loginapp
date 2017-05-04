@@ -44,12 +44,12 @@ passport.deserializeUser(function(id, done) {
 passport.use(new FacebookStrategy({
     clientID: "404285189927690",
     clientSecret: "8924399b0f5e60f180032049a6052997",
-    callbackURL: 'http://46.101.234.118/users/auth/facebook/callback'
+    callbackURL: 'http://localhost:3000/users/auth/facebook/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     
   	User.findOne({ "oauth_provider": "facebook", 'oauth_id' : profile.id }, function(err, user) {
-
+  		console.log(user);
   		if (err) {
           return done(err);
   		}
@@ -77,7 +77,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GitHubStrategy({
     clientID: "b3da5009c2a93cbbc34f",
     clientSecret: "8bbb3d5f938a59a8033ed095d4cdd0ffb7ab5477",
-    callbackURL: "http://46.101.234.118/users/auth/github/callback"
+    callbackURL: "http://localhost:3000/users/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
   	console.log(profile);
@@ -150,6 +150,8 @@ router.post("/register", function(req, res) {
 						username: username,
 						password: password
 					});
+
+			//MAKE SEPARATE VALIDATIONS FOR USERNAME AND EMAIL!!!!
 
 			User.createUser(newUser, function(err, user) {
 				if(err) throw err;
