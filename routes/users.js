@@ -139,29 +139,32 @@ router.post("/register", function(req, res) {
 		});
 	} 
 	
-	collection.find({username: username, email: email}).toArray((err, user) => {
+	collection.find({username: username}).toArray((err, user) => {
 		if(user.length) {
 			console.log(user);
 			res.render("register", {warning: "User with these credentials already exists"})
-		} else {
-			var newUser = new User({
+		} else { 
+			collection.find({email: email}).toArray((err, user) => {
+				if(user.length) {
+					console.log(user);
+					res.render("register", {warning: "User with these credentials already exists"})
+				} else {
+					var newUser = new User({
 						name: name,
 						email: email,
 						username: username,
 						password: password
 					});
-
-			//MAKE SEPARATE VALIDATIONS FOR USERNAME AND EMAIL!!!!
-
-			User.createUser(newUser, function(err, user) {
-				if(err) throw err;
-				console.log(user);
-			});
-
-			req.flash("success_msg", "You are registered and can now login");
-
-			res.redirect("/users/login");
-		}
+					//MAKE SEPARATE VALIDATIONS FOR USERNAME AND EMAIL!!!!(FIXED)
+					User.createUser(newUser, function(err, user) {
+						if(err) throw err;
+						console.log(user);
+					});
+					req.flash("success_msg", "You are registered and can now login");
+					res.redirect("/users/login");
+				}
+				});
+			}
 		
 
 	});
