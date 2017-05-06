@@ -38,7 +38,12 @@ router.post("/posts/create", ensureAuthenticated, function(req, res) {
 		res.redirect("/");
 	}
 
-})
+});
+router.get("/deletePost/:id", ensureAuthenticated, function(req, res) {
+	Post.findOne({_id: req.params.id}, function(err, post) {
+		post.remove();
+	});
+});
 
 function ensureAuthenticated(req, res, next) {
 	if(req.isAuthenticated()) {

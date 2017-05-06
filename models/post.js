@@ -1,7 +1,16 @@
 var mongoose = require("mongoose");
+var autoIncrement = require('mongoose-auto-increment');
+var Schema = mongoose.Schema;
+var connection = mongoose.createConnection("mongodb://localhost/loginapp");
+autoIncrement.initialize(connection);
 
-//USER SCHEMA
+
+//POST SCHEMA
 var PostSchema = mongoose.Schema({
+	id: { 
+		type: Schema.Types.ObjectId, 
+		ref: 'Post' 
+	},
 	title: {
 		type: String	
 	},
@@ -11,7 +20,6 @@ var PostSchema = mongoose.Schema({
 	username: {
 		type: String
 	}
-	
 });
-
+PostSchema.plugin(autoIncrement.plugin, 'Post');
 var Post = module.exports = mongoose.model("Post", PostSchema);

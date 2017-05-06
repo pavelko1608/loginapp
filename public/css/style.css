@@ -40,12 +40,21 @@ body {
 }
 
 .media-object {
+	
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	width: 60%;
 
 }
+
+.delete-button {
+	display: flex;
+	margin-left: auto;
+	margin-top: auto;
+
+}
+
 .media-object-section {
 	display: flex;
 	justify-content: center;
