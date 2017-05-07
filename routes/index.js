@@ -20,7 +20,8 @@ router.post("/posts/create", ensureAuthenticated, function(req, res) {
 	 var newPost = new Post({
 	 	title: req.body.title,
 	 	post: req.body.post,
-	 	username: req.user.name
+	 	username: req.user.name,
+	 	oauth_provider: req.user.oauth_provider
 	});
 
 	req.checkBody("title", "Title is required").notEmpty();

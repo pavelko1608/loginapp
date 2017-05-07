@@ -44,10 +44,9 @@ passport.deserializeUser(function(id, done) {
 passport.use(new FacebookStrategy({
     clientID: "404285189927690",
     clientSecret: "8924399b0f5e60f180032049a6052997",
-    callbackURL: 'http://46.101.234.118/users/auth/facebook/callback'
+    callbackURL: 'http://localhost:3000/users/auth/facebook/callback'
   },
   function(accessToken, refreshToken, profile, done) {
-    
   	User.findOne({ "oauth_provider": "facebook", 'oauth_id' : profile.id }, function(err, user) {
   		console.log(user);
   		if (err) {
@@ -149,30 +148,25 @@ router.post("/register", function(req, res) {
 					console.log(user);
 					res.render("register", {warning: "User with these credentials already exists"})
 				} else {
-					var newUser = new User({
-						name: name,
-						email: email,
-						username: username,
-						password: password
+						var newUser = new User({
+							name: name,
+							email: email,
+							username: username,
+							password: password
+						});
+						//MAKE SEPARATE VALIDATIONS FOR USERNAME AND EMAIL!!!!(FIXED)
+						User.createUser(newUser, function(err, user) {
+							if(err) throw err;
+							console.log(user);
+						});
+						req.flash("success_msg", "You are registered and can now login");
+						res.redirect("/users/login");
+					}
 					});
-					//MAKE SEPARATE VALIDATIONS FOR USERNAME AND EMAIL!!!!(FIXED)
-					User.createUser(newUser, function(err, user) {
-						if(err) throw err;
-						console.log(user);
-					});
-					req.flash("success_msg", "You are registered and can now login");
-					res.redirect("/users/login");
 				}
-				});
-			}
-		
-
+		});
 	});
 
-	
-
-
-});
 
 //LOGIN
 router.get("/login", function(req, res) {

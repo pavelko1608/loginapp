@@ -19,6 +19,9 @@ var PostSchema = mongoose.Schema({
 	},
 	username: {
 		type: String
+	},
+	oauth_provider: {
+		type: String
 	}
 });
 PostSchema.plugin(autoIncrement.plugin, 'Post');

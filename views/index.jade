@@ -6,13 +6,20 @@ block content
 	div(class="media-container")
 		each post in posts
 			div(class="media-object")
-				a(class="delete-button" onclick="deletePost(#{post._id})") 
-					i(class="fa fa-times delete-button" aria-hidden="true")
+				if post.username == user.name
+					a(class="delete-button" onclick="deletePost(#{post._id})") 
+						i(class="fa fa-times delete-button" aria-hidden="true")
 				div(class="media-object-section main-section")
 					h4 #{post.title}				
 				div(class="media-object-section main-section") 		
 					p #{post.post}
 				div(class="media-object-section main-section")
-					cite #{post.username}
+					if post.oauth_provider
+						cite #{post.username} (#{post.oauth_provider})
+					else 
+						cite #{post.username}
 
 					
+
+
+
