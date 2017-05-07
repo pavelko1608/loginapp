@@ -42,7 +42,12 @@ router.post("/posts/create", ensureAuthenticated, function(req, res) {
 });
 router.get("/deletePost/:id", ensureAuthenticated, function(req, res) {
 	Post.findOne({_id: req.params.id}, function(err, post) {
-		post.remove();
+		if(post.username == req.user.name) {
+			post.remove();
+		} else {
+			res.send("Bloddy hacker!!");
+		}
+
 	});
 });
 
@@ -54,5 +59,7 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect("/users/login");
 	}
 }
+
+
 
 module.exports = router;
